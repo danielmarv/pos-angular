@@ -1,0 +1,39 @@
+<mat-card class="form-wrapper" *ngIf="showForm">
+  <div class="p-3">
+    <h1>Create Admin Account</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="d-inline-flex flex-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+          <mat-icon matSuffix>person_outline</mat-icon>
+          <mat-error *ngIf="form.get('email')?.invalid">
+            Email is not correct!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            type="password"
+            autocomplete="password" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            formControlName="password_confirmation"
+            matInput
+            type="password"
+            autocomplete="password" />
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">
+          Create Admin
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card>
+<div *ngIf="!showForm">
+  <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+</div>

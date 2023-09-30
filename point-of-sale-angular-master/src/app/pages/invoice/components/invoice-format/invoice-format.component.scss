@@ -1,0 +1,147 @@
+
+#smallinvoice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200% !important;
+  color: black!important;
+}
+
+p {
+  font-size: 13px !important;
+  margin-block-start: 0.1em !important;
+  margin-block-end: 0.1em !important;
+}
+
+.smallInvoice-mainDiv {
+  background: #fff;
+  margin: 10px;
+  position: absolute;
+  top: 90px;
+  //left: -10px;
+  width: 60%;
+}
+
+.invoice-header {
+  text-align: center;
+  margin: 10px 0px 10px 0;
+}
+
+.invoice-content {
+  width: 300px;
+}
+
+.item-box {
+  border-top: 1px dashed #000;
+  border-top-color: black !important;
+  border-top-width: thin;
+  border-bottom: 1px dashed #000;
+  border-bottom-width: thin;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: black !important;
+}
+
+.total-box {
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -10px !important;
+}
+
+.payment {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.company-details {
+  font-size: 14px !important;
+  text-align: center;
+  text-transform: uppercase;
+
+
+}
+
+.invoice-details {
+  margin-top: 10px !important;
+  font-size: 12px !important;
+
+}
+.invoice-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.qrCode {
+  transform: scale(1);
+  height: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.footer {
+  text-align: center;
+}
+
+.barcode {
+  display: block;
+  justify-content: center !important;
+  margin-left: 50px!important;
+}
+
+@media print {
+  .smallInvoice-mainDiv{
+    background: #fff;
+    margin: -60px 50px 50px 35px;
+    position: absolute;
+    padding: 50px;
+    //top: 27px !important;
+    left: 0px !important;
+    //margin-left: -10px !important;
+  }
+  .company-details p {
+    font-size: 17px !important;
+    //margin-bottom: -5px !important;
+
+  }
+
+  #smallinvoice {
+    width: 165% !important;
+    text-align: center;
+    //margin-top: 60px;
+    color: black !important;
+    //transform: scale(1.2);
+    font-family: Arial !important;
+  }
+  .title {
+    display: none;
+    position: absolute;
+  }
+  .invoice-details {
+    text-align: left !important;
+  }
+
+  ::ng-deep .mat-dialog-container {
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .invoice-item {
+    text-align: left !important;
+  }
+  .invoice-item p {
+    font-size: 15px !important;
+  }
+
+  .footer {
+    text-align: left !important;
+  }
+
+}

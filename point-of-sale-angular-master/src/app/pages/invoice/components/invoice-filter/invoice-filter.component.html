@@ -1,0 +1,71 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-card class="filter-form">
+    <mat-card-content>
+      <div class="row">
+        <div class="col" *ngIf="showUsers">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>User</mat-label>
+            <mat-select formControlName="user">
+              <mat-option></mat-option>
+              <mat-option *ngFor="let user of users" [value]="user.id">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Is paid</mat-label>
+            <mat-select placeholder="Has Stock" formControlName="isPaid">
+              <mat-option></mat-option>
+              <mat-option [value]="1">Yes</mat-option>
+              <mat-option [value]="0">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Choose date</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input
+                matStartDate
+                formControlName="startDate"
+                placeholder="Start date" />
+              <input
+                matEndDate
+                formControlName="endDate"
+                placeholder="End date" />
+            </mat-date-range-input>
+            <mat-datepicker-toggle
+              [for]="picker"
+              matSuffix></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+
+            <mat-error
+              *ngIf="form.get('startDate')?.hasError('matStartDateInvalid')">
+              Invalid start date
+            </mat-error>
+            <mat-error
+              *ngIf="form.get('endDate')?.hasError('matEndDateInvalid')">
+              Invalid end date
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <button class="mr-2" mat-raised-button color="primary" type="submit">
+            <mat-icon class="mr-2">search</mat-icon>
+            <span>Search</span>
+          </button>
+          <button
+            (click)="form.reset(); onSubmit()"
+            mat-button
+            color="warn"
+            type="button">
+            Reset
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

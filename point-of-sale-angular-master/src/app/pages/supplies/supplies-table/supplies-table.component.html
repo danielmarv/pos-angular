@@ -1,0 +1,48 @@
+<div class="mat-elevation-z1 rounded-table" *ngIf="dataSource">
+  <table class="mat-table full-width" [dataSource]="dataSource.data" mat-table>
+    <mat-text-column headerText="No." name="id"></mat-text-column>
+
+    <ng-container matColumnDef="product">
+      <th *matHeaderCellDef mat-header-cell>Product</th>
+      <td *matCellDef="let element" mat-cell>
+        <b>{{ element.product.name }}</b>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="before">
+      <th *matHeaderCellDef mat-header-cell>Before supply</th>
+      <td *matCellDef="let element" mat-cell>
+        {{ element.before_supply }} {{ element.stock.type }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="after">
+      <th *matHeaderCellDef mat-header-cell>After supply</th>
+      <td *matCellDef="let element" mat-cell>
+        <b>{{ element.after_supply }} {{ element.stock.type }} </b>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+      <th *matHeaderCellDef mat-header-cell>Made at</th>
+      <td *matCellDef="let element" mat-cell>
+        {{ element.created_at | date: 'medium':'+0000' }}
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      class="element-row"
+      *matRowDef="let row; columns: displayedColumns"
+      mat-row></tr>
+  </table>
+  <!--  remove 1 from current page and add 1 when changing page-->
+  <mat-paginator
+    [length]="dataSource.total"
+    [pageIndex]="dataSource.current_page - 1"
+    [pageSize]="+dataSource.per_page"
+    [pageSizeOptions]="[20, 30, 50]"
+    (page)="paginated.emit($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>

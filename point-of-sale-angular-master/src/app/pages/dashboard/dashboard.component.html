@@ -1,0 +1,68 @@
+<div class="row mb-3">
+  <div class="col-md-4">
+    <mat-card class="mb-3">
+      <mat-card-content>
+        <h2>Sales Today</h2>
+        <p class="dashboard-number" *ngIf="!loading">Shs {{ data.sales }}</p>
+        <div class="flex-center" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="mt-3">
+      <mat-card-content>
+        <h2>Invoices</h2>
+        <p class="dashboard-number" *ngIf="!loading">{{ data.invoiceCount }}</p>
+        <div class="flex-center" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-8">
+    <mat-card class="full-height">
+      <mat-card-content style="min-height: 200px">
+        <h2 class="text-center m-0">Most sold products</h2>
+        <app-items-chart
+          *ngIf="data.productSales"
+          [data]="data.productSales"></app-items-chart>
+        <div class="flex-center" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div class="row mb-4" style="height: 250px">
+  <div class="col-md-4">
+    <mat-card class="full-height">
+      <mat-card-content>
+        <h2 class="text-center">Sales by category</h2>
+        <app-categories-chart
+          *ngIf="data.salesByCategory"
+          [data]="data.salesByCategory">
+        </app-categories-chart>
+        <div class="flex-center" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-8">
+    <mat-card class="full-height">
+      <mat-card-content>
+        <h2 class="text-center">Products below minimum stock</h2>
+        <app-below-stock-products-table
+          *ngIf="data.lowStockProducts"
+          [dataSource]="data.lowStockProducts">
+        </app-below-stock-products-table>
+        <div class="flex-center" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

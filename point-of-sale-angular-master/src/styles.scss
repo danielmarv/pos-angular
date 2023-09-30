@@ -1,0 +1,109 @@
+@use '@angular/material' as mat;
+
+@import "~bootstrap/scss/bootstrap-grid";
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$booking-tool-primary: mat.define-palette(mat.$indigo-palette);
+$booking-tool-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$booking-tool-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$booking-tool-theme: mat.define-light-theme((
+  color: (
+    primary: $booking-tool-primary,
+    accent: $booking-tool-accent,
+    warn: $booking-tool-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($booking-tool-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.alert-snackbar {
+  color: #fff !important;
+  background-color: #F44336 !important;
+}
+
+.success-snackbar {
+  color: #fff !important;
+  background-color: #00c853 !important;
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%
+}
+
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+table {
+  width: 100%;
+}
+
+.mat-row:hover {
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+
+.rounded-table {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+
+.no-data {
+  margin-top: 30px;
+  padding: 50px;
+  font-size: 25px;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #ff723e;
+  color: #ff723e;
+}
+
+
+.text-center {
+  text-align: center !important;
+}
+
+.full-height {
+  height: 100% !important;
+}

@@ -1,0 +1,98 @@
+<div class="smallInvoice-mainDiv">
+  <div id="smallinvoice">
+    <div mat-dialog-content>
+      <div class="invoice-content">
+        <div class="company-details">
+          <p style="font-weight: bold">{{ invoiceDetails.user.name }}</p>
+          <p>{{ invoiceDetails.user.email }}</p>
+          <p>{{ invoiceDetails.user.created_at | date: 'd/M/y hh:mm' }}</p>
+        </div>
+        <div class="invoice-header">
+          <h1 style="font-weight: bold">FATURË</h1>
+          <!--          <p style="margin-bottom: 5px !important;">{{ data.invoiceNumber }}</p>-->
+        </div>
+        <div class="item-box">
+          <div
+            class="invoice-item"
+            *ngFor="let item of invoiceDetails.invoice_products">
+            <div>
+              <div>
+                <p>{{ item.quantity }} cope x {{ item.price }} ALL</p>
+              </div>
+              <p style="margin-top: -5px !important">{{ item.product.name }}</p>
+            </div>
+            <div>
+              <p>{{ item.total }} ALL</p>
+            </div>
+          </div>
+        </div>
+        <div class="total-box">
+          <div class="description-column">
+            <p
+              style="
+                font-weight: bold;
+                margin-top: 20px !important;
+                margin-bottom: 10px !important;
+                margin-left: 5px !important;
+                transform: scale(1, 2.5);
+              ">
+              TOTALI LEK
+            </p>
+          </div>
+          <div class="numbers-column">
+            <p
+              style="
+                font-weight: bold;
+                margin-top: 15px !important;
+                margin-bottom: 10px !important;
+                margin-right: 5px !important;
+                transform: scale(1, 2.5);
+              ">
+              {{ invoiceDetails.total | number: '1.1-2' }} ALL
+            </p>
+          </div>
+        </div>
+        <!--        <div *ngIf="data.invoicePayments.length > 0">-->
+        <!--          <div class="payment" *ngFor="let invoicePayment of data.invoicePayments">-->
+
+        <!--            <div class="description-column">-->
+        <!--              <p style="margin-left: 5px !important; margin-top: 5px!important; text-align: left; margin-bottom: 10px!important; margin-top: 0px !important;">-->
+        <!--                {{invoicePayment.paymentMethod.name}}</p>-->
+
+        <!--            </div>-->
+        <!--            <div class="numbers-column">-->
+        <!--              <p style="margin-right: 5px !important;-->
+        <!--                         margin-top: 5px!important; text-align: right; font-size: 15px !important;margin-top:0px !important;">-->
+        <!--                {{invoicePayment.amount}}</p>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+
+        <div class="qrCode">
+          <qr-code
+            [value]="qrCodeLink"
+            style=""
+            errorCorrectionLevel="L"></qr-code>
+          <!--          <qr-code></qr-code>-->
+        </div>
+        <div>
+          <div>
+            <div class="barcode" style="width: 200px; display: block">
+              <ngx-barcode
+                [bc-height]="40"
+                [bc-width]="2"
+                [bc-value]="barcode"
+                [bc-display-value]="false"
+                style="height: 60px; width: 200px">
+              </ngx-barcode>
+            </div>
+          </div>
+          <div>
+            <span style="font-size: 11px !important">Fature nga AmigPos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--{{invoiceDetails | json}}-->
+</div>

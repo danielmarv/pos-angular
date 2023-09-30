@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <div class="d-flex align-items-center mb-3">
+        <button class="mr-2" routerLink="/supplies" mat-icon-button>
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1 class="m-0">Supply product</h1>
+      </div>
+
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="form">
+            <div class="row" *ngIf="product$ | async as product; else loading">
+              <div class="col-12 product-details-container">
+                <ng-container>
+                  <div>
+                    <span>Product name:</span> <b>{{ product.name }}</b>
+                  </div>
+                  <div>
+                    <span>Product category:</span>
+                    <b>{{ product.category.name }}</b>
+                  </div>
+                  <div>
+                    <span>Barcode:</span> <b>{{ product.barcode }}</b>
+                  </div>
+                  <div>
+                    <span>Minimum stock:</span> <b>{{ product.low_stock }}</b>
+                  </div>
+                  <div>
+                    <span>Current stock:</span>
+                    <b>{{ product.stock.quantity }} {{ product.stock.type }}</b>
+                  </div>
+                </ng-container>
+              </div>
+              <div class="col-8">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Supply quantity</mat-label>
+                  <input
+                    type="text"
+                    formControlName="supplyQuantity"
+                    matInput
+                    placeholder="Add supply quantity" />
+                  <span matSuffix>{{ product.stock.type }}</span>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12">
+                <button
+                  (click)="onSubmit(product)"
+                  type="button"
+                  mat-raised-button
+                  color="primary">
+                  <mat-icon class="mr-2">add_shopping_cart</mat-icon>
+                  <span>Supply product</span>
+                </button>
+              </div>
+            </div>
+
+            <ng-template #loading>
+              <div class="flex-center">
+                <mat-spinner></mat-spinner>
+              </div>
+            </ng-template>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div #chartContainer *ngIf="data; else loading">
+  <ngx-charts-bar-vertical
+    [view]="[offsetWidthContainer, 180]"
+    [scheme]="itemsChartOpts.colorScheme"
+    [results]="data"
+    [gradient]="itemsChartOpts.gradient"
+    [xAxis]="itemsChartOpts.showXAxis"
+    [yAxis]="itemsChartOpts.showYAxis"
+    [legend]="itemsChartOpts.showLegend"
+    [showXAxisLabel]="itemsChartOpts.showXAxisLabel"
+    [showYAxisLabel]="itemsChartOpts.showYAxisLabel"
+    [barPadding]="itemsChartOpts.barPadding"
+    [showGridLines]="itemsChartOpts.showGridLines"
+    (select)="itemsChartOpts.onSelect($event)">
+  </ngx-charts-bar-vertical>
+</div>
+<ng-template #loading>
+  <mat-spinner class="center"></mat-spinner>
+</ng-template>

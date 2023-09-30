@@ -1,0 +1,15 @@
+<div #chartContainer>
+  <ngx-charts-pie-chart
+    [view]="[offsetWidthContainer, 300]"
+    [scheme]="categoriesChartOpts.colorScheme"
+    [results]="data"
+    [gradient]="categoriesChartOpts.gradient"
+    [legend]="categoriesChartOpts.showLegend"
+    [labels]="categoriesChartOpts.showLabels"
+    [doughnut]="categoriesChartOpts.isDoughnut"
+    [legendPosition]="categoriesChartOpts.legendPosition"
+    (select)="categoriesChartOpts.onSelect($event)"
+    (activate)="categoriesChartOpts.onActivate($event)"
+    (deactivate)="categoriesChartOpts.onDeactivate($event)">
+  </ngx-charts-pie-chart>
+</div>

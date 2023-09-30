@@ -1,0 +1,65 @@
+<div class="rounded-table mat-elevation-z1">
+  <table class="mat-table full-width" [dataSource]="invoiceProducts" mat-table>
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let element" mat-cell>{{ element.product.name }}</td>
+      <td *matFooterCellDef mat-footer-cell></td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th *matHeaderCellDef mat-header-cell>Price</th>
+      <td *matCellDef="let element" mat-cell>
+        Shs  {{ element.product.price }}
+      </td>
+      <td *matFooterCellDef mat-footer-cell></td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <th *matHeaderCellDef mat-header-cell>Count</th>
+      <td *matCellDef="let element" mat-cell style="min-width: 80px">
+        <div
+          class="d-flex align-items-center"
+          style="justify-content: space-evenly">
+          <button
+            class="count-btn remove"
+            (click)="decrease.emit(element.product.id)">
+            -
+          </button>
+          {{ element.count }}
+          <button
+            class="count-btn add"
+            [disabled]="element.product.stock.quantity <= element.count"
+            (click)="increase.emit(element.product.id)">
+            +
+          </button>
+        </div>
+      </td>
+      <td *matFooterCellDef mat-footer-cell>Total:</td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th *matHeaderCellDef mat-header-cell>Total</th>
+      <td *matCellDef="let element" mat-cell>
+          {{ element.count * element.product.price }}
+      </td>
+      <td *matFooterCellDef mat-footer-cell>Shs {{ allTotal() }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="remove">
+      <th *matHeaderCellDef mat-header-cell>Remove</th>
+      <td *matCellDef="let element" mat-cell>
+        <button
+          (click)="removed.emit(element.product.id)"
+          mat-stroked-button
+          color="warn">
+          Remove
+        </button>
+      </td>
+      <td *matFooterCellDef mat-footer-cell></td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+    <tr *matFooterRowDef="displayedColumns" mat-footer-row></tr>
+  </table>
+</div>

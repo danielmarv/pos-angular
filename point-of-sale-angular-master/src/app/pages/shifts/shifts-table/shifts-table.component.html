@@ -1,0 +1,29 @@
+<div class="mat-elevation-z8">
+  <table [dataSource]="data" mat-table>
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell>ID</th>
+      <td *matCellDef="let element" mat-cell>{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="start_time">
+      <th *matHeaderCellDef mat-header-cell>Start time</th>
+      <td *matCellDef="let element" mat-cell>{{ element.start_time }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="end_time">
+      <th *matHeaderCellDef mat-header-cell>End time</th>
+      <td *matCellDef="let element" mat-cell>{{ element.end_time }}</td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="opened.emit(row)"
+      mat-row></tr>
+  </table>
+</div>

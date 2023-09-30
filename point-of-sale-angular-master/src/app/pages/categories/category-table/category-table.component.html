@@ -1,0 +1,26 @@
+<div class="mat-elevation-z8">
+  <table [dataSource]="data" mat-table>
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell>ID</th>
+      <td *matCellDef="let element" mat-cell>{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="icon">
+      <th *matHeaderCellDef mat-header-cell>Icon</th>
+      <td *matCellDef="let element" mat-cell>
+        <mat-icon [style.color]="element.color">{{ element.icon }}</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="opened.emit(row)"
+      mat-row></tr>
+  </table>
+</div>

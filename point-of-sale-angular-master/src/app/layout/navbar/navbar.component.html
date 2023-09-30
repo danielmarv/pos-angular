@@ -1,0 +1,51 @@
+<mat-toolbar
+  class="d-flex justify-content-between align-items-center"
+  color="primary">
+  <div class="d-flex align-items-center">
+    <div>Amigos - POS</div>
+    <div class="ml-5">
+      <ng-container *ngFor="let item of navItems">
+        <button
+          class="mr-2"
+          [routerLink]="[item.path]"
+          mat-button
+          routerLinkActive="active">
+          <mat-icon class="mr-2">{{ item.icon }}</mat-icon>
+          <span>{{ item.label }}</span>
+        </button>
+
+        <!-- <button
+          class="mr-2"
+          *ngIf="
+            item.roles.includes(auth.state.role!) || item.roles.length === 0
+          "
+          [routerLink]="[item.path]"
+          mat-button
+          routerLinkActive="active">
+          <mat-icon class="mr-2">{{ item.icon }}</mat-icon>
+          <span>{{ item.label }}</span>
+        </button> -->
+      </ng-container>
+    </div>
+  </div>
+  <div>
+    <button *ngIf="name$ | async as name" [matMenuTriggerFor]="menu" mat-button>
+      Hello {{ name }}
+      <span class="material-icons ml-1">expand_more</span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span class="d-flex align-items-center" routerLink="profile">
+          <span class="material-icons mr-1">person_outline</span>
+          <span>Profile</span>
+        </span>
+      </button>
+      <button (click)="auth.logout()" mat-menu-item>
+        <span class="d-flex align-items-center">
+          <span class="material-icons mr-1">logout</span>
+          <span>Logout</span>
+        </span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

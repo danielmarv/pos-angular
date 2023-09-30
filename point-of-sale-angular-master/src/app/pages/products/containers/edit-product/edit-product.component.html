@@ -1,0 +1,29 @@
+<div class="container">
+  <ng-container *ngIf="product$ | async as product; else loading">
+    <div class="d-flex align-items-center mb-3">
+      <button
+        class="mr-2"
+        [routerLink]="['/products/details', product.id]"
+        mat-icon-button>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1 class="m-0">Edit product</h1>
+    </div>
+
+    <mat-card>
+      <mat-card-content *ngIf="categories$ | async as categories">
+        <app-product-form
+          [categories]="categories"
+          [product]="product"
+          (submitted)="handleEdit(product.id, $event)">
+        </app-product-form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="flex-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>

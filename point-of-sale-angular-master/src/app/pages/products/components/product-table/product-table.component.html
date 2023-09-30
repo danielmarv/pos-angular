@@ -1,0 +1,82 @@
+<div class="mat-elevation-z1 rounded-table">
+  <table class="mat-table full-width" [dataSource]="dataSource" mat-table>
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell>No.</th>
+      <td *matCellDef="let element" mat-cell>{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th *matHeaderCellDef mat-header-cell>Price</th>
+      <td *matCellDef="let element" mat-cell>{{ element.price }} Lekë</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lowStock">
+      <th *matHeaderCellDef mat-header-cell>LowStock</th>
+      <td *matCellDef="let element" mat-cell>{{ element.low_stock }}</td>
+    </ng-container>
+
+    <!-- OptimalStock Column -->
+    <ng-container matColumnDef="optimalStock">
+      <th *matHeaderCellDef mat-header-cell>OptimalStock</th>
+      <td *matCellDef="let element" mat-cell>{{ element.optimal_stock }}</td>
+    </ng-container>
+
+    <!-- Stock Column -->
+    <ng-container matColumnDef="stock">
+      <th *matHeaderCellDef mat-header-cell>Stock</th>
+      <td *matCellDef="let element" mat-cell>{{ element?.stock?.quantity }}</td>
+    </ng-container>
+
+    <!-- Stock type  Column -->
+    <ng-container matColumnDef="stock_type">
+      <th *matHeaderCellDef mat-header-cell>Stock type</th>
+      <td *matCellDef="let element" mat-cell>{{ element?.stock?.type }}</td>
+    </ng-container>
+
+    <!-- Barcode Column -->
+    <ng-container matColumnDef="barcode">
+      <th *matHeaderCellDef mat-header-cell>Barcode</th>
+      <td *matCellDef="let element" mat-cell>{{ element.barcode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button
+          [routerLink]="['/products/details', element.id]"
+          mat-button
+          type="button"
+          color="primary">
+          <mat-icon>info</mat-icon>
+        </button>
+        <button
+          [routerLink]="['/supplies/add', element.id]"
+          mat-button
+          type="button">
+          <mat-icon class="mr-2">add_shopping_cart</mat-icon>
+          <span>Supply</span>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      class="element-row"
+      *matRowDef="let row; columns: displayedColumns"
+      mat-row></tr>
+  </table>
+  <!--  Pyet Enean per length dhe hiqe nga statike-->
+  <mat-paginator
+    [length]="pagination.total"
+    [pageIndex]="pagination.pageIndex - 1"
+    [pageSize]="pagination.pageSize"
+    [pageSizeOptions]="[20, 50, 100]"
+    (page)="paginated.emit($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>

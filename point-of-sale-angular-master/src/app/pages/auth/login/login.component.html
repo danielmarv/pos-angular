@@ -1,0 +1,33 @@
+<mat-card class="form-wrapper">
+  <div class="p-3">
+    <h1>Login</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="d-inline-flex flex-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+          <mat-icon matSuffix>person_outline</mat-icon>
+          <mat-error *ngIf="form.get('email')?.invalid">
+            Email is not correct!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            matInput />
+          <button
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            (click)="hide = !hide"
+            mat-icon-button
+            matSuffix>
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Login</button>
+      </div>
+    </form>
+  </div>
+</mat-card>

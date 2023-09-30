@@ -1,0 +1,51 @@
+<div class="container-fluid p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center">
+      <h1 class="m-0">Products</h1>
+      <button
+        class="mx-3"
+        routerLink="/products/add"
+        mat-button
+        color="primary">
+        <mat-icon class="mr-2">add</mat-icon>
+        <span>Add product</span>
+      </button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="racing$ | async"></ng-container>
+
+  <ng-container *ngIf="vm$ | async as vm">
+    <app-product-filter-form
+      *ngIf="categories$ | async as categories"
+      @fadeIn
+      [categories]="categories"
+      [filters]="vm.filters"
+      (filtered)="load.next($event)">
+    </app-product-filter-form>
+
+    <app-product-table
+      class="product-table"
+      *ngIf="vm.data.length > 0 && !vm.loading"
+      @fadeIn
+      [dataSource]="vm.data"
+      [pagination]="vm.pagination"
+      (paginated)="load.next($event)">
+    </app-product-table>
+
+    <div class="flex-center mt-4" *ngIf="vm.loading" @fadeIn>
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div
+      class="no-data"
+      *ngIf="vm.data.length === 0 && vm.loaded && !vm.error"
+      @fadeIn>
+      No data found!
+    </div>
+
+    <div class="error" *ngIf="vm.error">
+      {{ vm.error }}
+    </div>
+  </ng-container>
+</div>

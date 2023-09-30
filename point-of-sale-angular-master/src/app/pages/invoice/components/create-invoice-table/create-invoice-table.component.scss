@@ -1,0 +1,45 @@
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+  border-top: 1px solid currentColor;
+  font-size: 16px;
+}
+
+.count-btn {
+  font-size: 25px;
+  border: none;
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s all;
+
+  &:disabled {
+    color: grey!important;
+    background: darkgrey!important;
+  }
+
+  &:active {
+    transform: translateY(-5px);
+  }
+
+  &.add {
+    background: #26ff00;
+    color: #19a700;
+  }
+  &.remove {
+    background: #ff000040;
+    color: red;
+  }
+}

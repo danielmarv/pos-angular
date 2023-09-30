@@ -1,0 +1,48 @@
+<div class="table-container mat-elevation-z0">
+  <table [dataSource]="dataSource" mat-table>
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="minimumStock">
+      <th *matHeaderCellDef mat-header-cell>Minimum Stock</th>
+      <td *matCellDef="let element" mat-cell>{{ element.low_stock }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="stock">
+      <th *matHeaderCellDef mat-header-cell>Current Stock</th>
+      <td *matCellDef="let element" mat-cell>
+        {{ element.stock.quantity }}
+        (
+        <span
+          [ngStyle]="{
+            color: element.stock.quantity | stockColor: element.low_stock
+          }">
+          {{ element.stock.quantity - element.low_stock }}
+        </span>
+        )
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="button">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button
+          [routerLink]="['/supplies/add', element.id]"
+          mat-button
+          type="button">
+          <mat-icon class="mr-2">arrow_forward</mat-icon>
+          <span>Supply</span>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+  </table>
+</div>

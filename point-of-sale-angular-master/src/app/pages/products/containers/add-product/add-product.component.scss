@@ -1,0 +1,31 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.col {
+  margin: 1rem 0;
+}
+
+.header-buttons {
+display: flex;
+ justify-content: flex-end;
+}
+
+.button-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-div {
+  width: 100%;
+}
+
+.card-container {
+  margin-top: 20px;
+}

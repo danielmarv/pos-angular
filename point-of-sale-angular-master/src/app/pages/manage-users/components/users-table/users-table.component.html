@@ -1,0 +1,35 @@
+<div class="mat-elevation-z1 rounded-table">
+  <table [dataSource]="data" mat-table>
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell>ID</th>
+      <td *matCellDef="let element" mat-cell>{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th *matHeaderCellDef mat-header-cell>Email</th>
+      <td *matCellDef="let element" mat-cell>{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="shift">
+      <th *matHeaderCellDef mat-header-cell>Shift</th>
+      <td *matCellDef="let element" mat-cell>
+        {{ element.user_shift?.shift.name }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th *matHeaderCellDef mat-header-cell>Role</th>
+      <td *matCellDef="let element" mat-cell>{{ element.role }}</td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      *matRowDef="let row; columns: displayedColumns"
+      [routerLink]="['details', row.id]"
+      mat-row></tr>
+  </table>
+</div>

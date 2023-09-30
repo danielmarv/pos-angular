@@ -1,0 +1,12 @@
+.product-details-container {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  span {
+    width: 160px;
+    display: inline-block;
+  }
+}

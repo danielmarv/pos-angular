@@ -1,0 +1,13 @@
+<div
+  class="text-center d-flex justify-content-center align-items-center"
+  mat-dialog-content>
+  <p>{{ message }}</p>
+</div>
+<div
+  class="d-flex justify-content-center align-items-center"
+  mat-dialog-actions>
+  <button class="mx-1" [mat-dialog-close]="false" mat-raised-button>No</button>
+  <button class="mx-1" [mat-dialog-close]="true" mat-raised-button color="warn">
+    Yes
+  </button>
+</div>

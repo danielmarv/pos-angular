@@ -1,0 +1,89 @@
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ex. Pizza"
+          formControlName="name" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Price</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Ex. 23 ALL"
+          formControlName="price" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Barcode</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Ex. 324521213"
+          formControlName="barcode" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category_id">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Stock Type</mat-label>
+        <mat-select formControlName="stock_type">
+          <mat-option></mat-option>
+          <mat-option value="l">L</mat-option>
+          <mat-option value="kg">Kg</mat-option>
+          <mat-option value="pcs">Piece</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Low stock</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Ex. 15"
+          formControlName="low_stock" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Optimal stock</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Ex. 40"
+          formControlName="optimal_stock" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12" *ngIf="!readonly">
+      <button mat-raised-button color="primary">
+        <mat-icon class="mr-2">save</mat-icon>
+        <span>Save product</span>
+      </button>
+    </div>
+  </div>
+</form>

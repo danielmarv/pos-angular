@@ -1,0 +1,56 @@
+<div class="container p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center">
+      <h1 class="m-0">Invoices</h1>
+      <button
+        class="mx-3"
+        (click)="resetInvoice()"
+        routerLink="/invoice/create"
+        mat-button
+        color="primary">
+        <mat-icon class="mr-2">add</mat-icon>
+        <span>Create invoice</span>
+      </button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="role !== 'user'">
+    <app-invoice-filter
+      *ngIf="users$ | async as users"
+      @fadeIn
+      [users]="users"
+      (filtered)="handleFilter($event)">
+    </app-invoice-filter>
+  </ng-container>
+
+  <ng-container *ngIf="role === 'user'">
+    <app-invoice-filter
+      @fadeIn
+      [showUsers]="false"
+      (filtered)="handleFilter($event)">
+    </app-invoice-filter>
+  </ng-container>
+
+  <div *ngIf="data$ | async as data; else loading">
+    <app-invoice-table
+      class="invoice-table"
+      *ngIf="data.data.length > 0"
+      @fadeIn
+      [dataSource]="data"
+      (paginated)="handlePagination($event)"
+      (invoiceClicked)="editInvoice($event)">
+    </app-invoice-table>
+
+    <div class="no-data" *ngIf="data.data.length === 0" @fadeIn>
+      No data found!
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="flex-center mt-4">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>
+
+<!--<app-invoice-format [invoiceDetails]="invoiceDetails"></app-invoice-format>-->

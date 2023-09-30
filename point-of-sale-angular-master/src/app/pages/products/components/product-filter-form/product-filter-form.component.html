@@ -1,0 +1,67 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-card class="filter-form">
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              placeholder="Name"
+              type="text"
+              formControlName="name"
+              min="0" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Barcode</mat-label>
+            <input
+              matInput
+              placeholder="E.g. John"
+              type="text"
+              formControlName="barcode" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="categoryId">
+              <mat-option></mat-option>
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category.id">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Has low stock</mat-label>
+            <mat-select placeholder="Has Stock" formControlName="hasLowStock">
+              <mat-option></mat-option>
+              <mat-option [value]="true">True</mat-option>
+              <mat-option [value]="false">False</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="mr-2" mat-raised-button color="primary" type="submit">
+            Filter products
+          </button>
+          <button
+            (click)="form.reset(); onSubmit()"
+            mat-button
+            color="warn"
+            type="button">
+            Reset form
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

@@ -1,0 +1,45 @@
+<div class="mat-elevation-z1 rounded-table" *ngIf="dataSource">
+  <table class="mat-table full-width" [dataSource]="dataSource.data" mat-table>
+    <mat-text-column headerText="No." name="id"></mat-text-column>
+
+    <ng-container matColumnDef="user">
+      <th *matHeaderCellDef mat-header-cell>User</th>
+      <td *matCellDef="let element" mat-cell>{{ element.user.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th *matHeaderCellDef mat-header-cell>Total</th>
+      <td *matCellDef="let element" mat-cell>{{ element.total }} Lekë</td>
+    </ng-container>
+
+    <ng-container matColumnDef="paid">
+      <th *matHeaderCellDef mat-header-cell>Is paid</th>
+      <td *matCellDef="let element" mat-cell>
+        {{ element.is_paid === 1 ? 'Yes' : 'No' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+      <th *matHeaderCellDef mat-header-cell>Last update</th>
+      <td *matCellDef="let element" mat-cell>
+        {{ element.updated_at | date: 'medium':'+0000' }}
+      </td>
+    </ng-container>
+    <!--    [routerLink]="['/products/details', row.id]"-->
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      class="element-row"
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="invoiceClicked.emit(row)"
+      mat-row></tr>
+  </table>
+  <!--  remove 1 from current page and add 1 when changing page-->
+  <mat-paginator
+    [length]="dataSource.total"
+    [pageIndex]="dataSource.current_page - 1"
+    [pageSize]="dataSource.per_page"
+    [pageSizeOptions]="[20, 30, 50]"
+    (page)="paginated.emit($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
